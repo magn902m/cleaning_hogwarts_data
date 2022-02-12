@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Cleaning Hogwarts Data</title>
+  </head>
+  <body>
+    <h1>Cleaning Hogwarts Data</h1>
+
+    <main>
+      <table id="list">
+        <thead>
+          <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Middle name (if any)</th>
+            <th>Nick name (if any)</th>
+            <th>Image/photo filename</th>
+            <th>House</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- student template will be copied and inserted here -->
+        </tbody>
+      </table>
+    </main>
+
+    <template id="student">
+      <tr>
+        <td data-field="first_name"></td>
+        <td data-field="last_name"></td>
+        <td data-field="middle_name"></td>
+        <td data-field="nick_name"></td>
+        <td data-field="img_filename"></td>
+        <td data-field="house"></td>
+      </tr>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
