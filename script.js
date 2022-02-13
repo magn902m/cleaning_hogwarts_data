@@ -23,6 +23,7 @@ function start() {
   loadJSON();
 }
 
+// MVP: Controller
 // Fetch student list JSON
 async function loadJSON() {
   console.log("loadJSON");
@@ -32,6 +33,7 @@ async function loadJSON() {
   makeStudents();
 }
 
+// MVP: Model
 // Make students
 function makeStudents() {
   console.log("makeStudents");
@@ -93,6 +95,10 @@ function makeStudents() {
 
     allStudents.push(student);
   });
+  showAllStudents();
+}
 
+// MVP: View
+function showAllStudents() {
   console.table(allStudents);
 }
