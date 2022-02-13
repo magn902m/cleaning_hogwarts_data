@@ -9,7 +9,8 @@ const Student = {
   lastName: "",
   middleName: "",
   nickName: "",
-  imgName: "",
+  gender: "",
+  imgSrc: "",
   house: "",
 };
 // API url
@@ -22,29 +23,55 @@ function start() {
   loadJSON();
 }
 
+// Fetch student list JSON
 async function loadJSON() {
+  console.log("loadJSON");
   const jsonData = await fetch(urlStudentList);
   studentData = await jsonData.json();
   console.table(studentData);
-
   makeStudents();
 }
 
+// Make students
 function makeStudents() {
   console.log("makeStudents");
   studentData.forEach((elm) => {
     const student = Object.create(Student);
-    let fullname = elm.fullname;
-    let house = elm.house;
-    // let gender = elm.gender;
 
-    student.firstName = fullname.substring(0, fullname.indexOf(" "));
-    student.lastName = fullname.substring(fullname.lastIndexOf(" "));
-    student.middleName = fullname.substring(fullname.lastIndexOf(" "), fullname.lastIndexOf(" "));
+    // Variables for holding data and trim data for whitespace
+    let fullName = elm.fullname.trim();
+    let house = elm.house.trim();
+    let gender = elm.gender.trim();
+
+    // Setting values for the object
+    // Firstname: take the first char and set it to upper case and set the rest to lower case.
+    student.firstName =
+      fullName.substring(0, 1).toUpperCase() +
+      fullName.substring(1, fullName.indexOf(" ")).toLowerCase();
+
+    // Lastname: take the first char in the lastname and make it upper case and the rest lower case.
+    student.lastName =
+      fullName
+        .substring(fullName.lastIndexOf(" ") + 1, fullName.lastIndexOf(" ") + 2)
+        .toUpperCase() + fullName.substring(fullName.lastIndexOf(" ") + 2).toLowerCase();
+
+    // Middlename: take the middlename and make the first char upper case and the rest lower case.
+    student.middleName = fullName.substring(fullName.indexOf(" "), fullName.lastIndexOf(" "));
+    // student.middleName =
+    // fullName.substring(0, fullName.lastIndexOf(" ")).toUpperCase() +
+    // fullName.substring(1, fullName.lastIndexOf(" ")).toLowerCase();
+
+    // Nickname: find the nickname with "" in a if statement.
     student.nickName = "";
-    student.imgName = "";
+
+    // Gender: first char set to upper case, rest to lower case.
+    student.gender = gender.charAt(0).toUpperCase() + gender.substring(1).toLowerCase();
+
+    // Imgsrc: find the destation and make it all to lower case.
+    student.imgSrc = "";
+
+    // House: set the first char to upper case and the rest to lower case.
     student.house = house.charAt(0).toUpperCase() + house.substring(1).toLowerCase();
-    // student.gender = elm.gender;
 
     allStudents.push(student);
   });
