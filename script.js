@@ -43,7 +43,7 @@ function makeStudents() {
     let house = elm.house.trim();
     let gender = elm.gender.trim();
 
-    // Setting values for the object
+    // -- Setting values for the object --
     // Firstname: take the first char and set it to upper case and set the rest to lower case.
     student.firstName =
       fullName.substring(0, 1).toUpperCase() +
@@ -56,19 +56,37 @@ function makeStudents() {
         .toUpperCase() + fullName.substring(fullName.lastIndexOf(" ") + 2).toLowerCase();
 
     // Middlename: take the middlename and make the first char upper case and the rest lower case.
-    student.middleName = fullName.substring(fullName.indexOf(" "), fullName.lastIndexOf(" "));
+    student.middleName =
+      fullName
+        .substring(fullName.indexOf(" "), fullName.lastIndexOf(" "))
+        .trim()
+        .substring(0, 1)
+        .toUpperCase() +
+      fullName
+        .substring(fullName.indexOf(" "), fullName.lastIndexOf(" "))
+        .trim()
+        .substring(1)
+        .toLowerCase();
     // student.middleName =
-    // fullName.substring(0, fullName.lastIndexOf(" ")).toUpperCase() +
-    // fullName.substring(1, fullName.lastIndexOf(" ")).toLowerCase();
+    //   fullName.substring(fullName.indexOf(" "), fullName.lastIndexOf(" ")) +
+    //   fullName.substring(0, 1).toUpperCase() +
+    //   fullName.substring(1).toLowerCase();
 
     // Nickname: find the nickname with "" in a if statement.
-    student.nickName = "";
+    if (fullName.includes(`"`)) {
+      student.nickName = fullName.substring(fullName.indexOf(`"`) + 1, fullName.lastIndexOf(`"`));
+    }
 
     // Gender: first char set to upper case, rest to lower case.
     student.gender = gender.charAt(0).toUpperCase() + gender.substring(1).toLowerCase();
 
     // Imgsrc: find the destation and make it all to lower case.
-    student.imgSrc = "";
+    student.imgSrc = `./images/${fullName.substring(0, fullName.indexOf(" ")).toLowerCase()}_.png`;
+    student.imgSrc = `./images/${
+      fullName
+        .substring(fullName.lastIndexOf(" ") + 1, fullName.lastIndexOf(" ") + 2)
+        .toLowerCase() + fullName.substring(fullName.lastIndexOf(" ") + 2).toLowerCase()
+    }_${fullName.substring(0, 1).toUpperCase().toLowerCase()}.png`;
 
     // House: set the first char to upper case and the rest to lower case.
     student.house = house.charAt(0).toUpperCase() + house.substring(1).toLowerCase();
