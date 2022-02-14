@@ -77,6 +77,7 @@ function makeStudents() {
     // Nickname: find the nickname with "" in a if statement.
     if (fullName.includes(`"`)) {
       student.nickName = fullName.substring(fullName.indexOf(`"`) + 1, fullName.lastIndexOf(`"`));
+      student.middleName = "";
     }
 
     // Gender: first char set to upper case, rest to lower case.
